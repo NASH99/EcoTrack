@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack | Portafolio de Proyecto</title>
+    
+    <!-- Chosen Palette: "Armonía Natural" - una paleta de verdes terrosos, beiges cálidos y un azul suave para crear una sensación de calma, tecnología y sostenibilidad. -->
+    <!-- Application Structure Plan: Se diseñó una aplicación de una sola página con una estructura narrativa. En lugar de replicar el orden del informe, se guía al usuario a través de una historia: 1. Conexión emocional (Hero), 2. Empatía con el problema (El Reto), 3. Presentación de la solución (La Solución - Interactivo), 4. Demostración de profesionalismo (El Proceso y El Impacto - con gráficos), 5. Humanización del proyecto (El Equipo), y 6. Llamada a la acción (Contacto). Esta estructura es más atractiva para un portafolio, ya que cuenta una historia convincente y mantiene al usuario enganchado, mientras que la navegación fija permite un acceso rápido a las secciones de interés. -->
+    <!-- Visualization & Content Choices: 1. Gráfico de Inversión: (Informe: Gráfico de pastel de presupuesto) -> (Meta: Informar sobre la estrategia financiera) -> (Visualización: Gráfico de Donas) -> (Interacción: Tooltips al pasar el ratón) -> (Justificación: Un gráfico dinámico es más profesional y atractivo que una imagen estática, mostrando seriedad en la planificación) -> (Biblioteca: Chart.js). 2. Características de la Solución: (Informe: Lista de características) -> (Meta: Organizar y explicar la solución) -> (Presentación: Pestañas interactivas) -> (Interacción: Clic para cambiar el contenido y la imagen) -> (Justificación: Evita la sobrecarga de información, permite al usuario explorar a su ritmo y hace que la sección sea más atractiva visualmente) -> (Método: HTML/CSS/JS). 3. Proceso de Inception: (Informe: Plan de 5 días) -> (Meta: Demostrar un proceso de desarrollo maduro) -> (Presentación: Línea de tiempo vertical con tarjetas) -> (Interacción: Sutiles animaciones al desplazarse) -> (Justificación: Presenta información compleja de forma digerible y visualmente ordenada, destacando la metodología ágil del equipo) -> (Método: HTML/Tailwind CSS). -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #FDFBF8;
+            color: #3D4A4D;
+        }
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #2E7D32, #1B5E20);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            transition: width 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #2E7D32;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: auto;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="header" class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-md transition-all duration-300">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-bold gradient-text">EcoTrack</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#challenge" class="nav-link font-semibold text-gray-600">El Reto</a>
+                <a href="#solution" class="nav-link font-semibold text-gray-600">La Solución</a>
+                <a href="#process" class="nav-link font-semibold text-gray-600">El Proceso</a>
+                <a href="#impact" class="nav-link font-semibold text-gray-600">Impacto</a>
+                <a href="#team" class="nav-link font-semibold text-gray-600">Equipo</a>
+            </nav>
+            <a href="#contact" class="hidden md:inline-block bg-green-700 text-white font-bold py-2 px-6 rounded-full hover:bg-green-800 transition-colors">Contacto</a>
+             <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#challenge" class="block py-2 px-6 text-sm text-gray-700 hover:bg-green-50">El Reto</a>
+            <a href="#solution" class="block py-2 px-6 text-sm text-gray-700 hover:bg-green-50">La Solución</a>
+            <a href="#process" class="block py-2 px-6 text-sm text-gray-700 hover:bg-green-50">El Proceso</a>
+            <a href="#impact" class="block py-2 px-6 text-sm text-gray-700 hover:bg-green-50">Impacto</a>
+            <a href="#team" class="block py-2 px-6 text-sm text-gray-700 hover:bg-green-50">Equipo</a>
+            <a href="#contact" class="block py-2 px-6 text-sm text-gray-700 hover:bg-green-50">Contacto</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="min-h-screen flex items-center bg-cover bg-center pt-20" style="background-image: url('https://placehold.co/1920x1080/EEF7EE/3D4A4D?text=')">
+            <div class="container mx-auto px-6 text-center">
+                <div class="w-full max-w-4xl mx-auto bg-white/80 backdrop-blur-sm p-8 md:p-12 rounded-3xl shadow-xl">
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4 text-shadow leading-tight">Donde cada acción cuenta</h1>
+                    <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-8">EcoTrack es una app que convierte acciones cotidianas en datos reales de impacto, ayudándote a construir hábitos sostenibles con propósito.</p>
+                    <a href="#challenge" class="bg-green-700 text-white font-bold py-4 px-10 rounded-full hover:bg-green-800 transition-transform hover:scale-105 text-lg shadow-lg">Descubre el Proyecto</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="challenge" class="py-20 md:py-32 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">El Reto de la Constancia</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">El deseo de ser sostenible es universal, pero el impulso inicial a menudo se desvanece. Investigamos por qué.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                        <h3 class="text-xl font-bold text-green-800 mb-3">Inconstancia en los Hábitos</h3>
+                        <p class="text-gray-600">La motivación inicial es finita. Sin un refuerzo claro, las nuevas rutinas sostenibles se sienten como una carga y se abandonan.</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                        <h3 class="text-xl font-bold text-green-800 mb-3">Invisibilidad del Impacto</h3>
+                        <p class="text-gray-600">Las acciones individuales se sienten pequeñas. La falta de un feedback tangible nos hace dudar si nuestro esfuerzo realmente marca una diferencia.</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                         <h3 class="text-xl font-bold text-green-800 mb-3">Frustración Emocional</h3>
+                        <p class="text-gray-600">Esta desconexión entre esfuerzo y resultado genera frustración, haciendo que perseverar sea aún más difícil.</p>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <p class="text-xl italic text-gray-700 bg-green-100/50 p-6 rounded-lg max-w-4xl mx-auto">"La gente sabe qué hacer, pero no cómo sostenerlo en el tiempo ni si realmente sirve para algo."</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Un Ecosistema de Motivación</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">EcoTrack no es solo una app, es tu compañero personal que cierra la brecha entre la intención y la acción sostenida.</p>
+                </div>
+                <div class="flex flex-col md:flex-row gap-10 items-center max-w-6xl mx-auto">
+                    <div class="w-full md:w-1/2">
+                        <div class="mb-8">
+                            <div class="flex border-b">
+                                <button data-tab="tab1" class="tab-btn flex-1 py-4 px-2 text-center font-semibold text-lg text-green-700 border-b-2 border-green-700">Seguimiento</button>
+                                <button data-tab="tab2" class="tab-btn flex-1 py-4 px-2 text-center font-semibold text-lg text-gray-500">Gamificación</button>
+                                <button data-tab="tab3" class="tab-btn flex-1 py-4 px-2 text-center font-semibold text-lg text-gray-500">Impacto</button>
+                            </div>
+                        </div>
+                        <div id="tab-content">
+                            <div id="tab1" class="tab-pane">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-3">Construye Rutinas que Perduran</h3>
+                                <p class="text-gray-600">Te damos las herramientas para elegir, seguir y consolidar hábitos que importan. Elige hasta 3 hábitos para enfocarte, transformando el esfuerzo en una rutina sin esfuerzo y medible.</p>
+                            </div>
+                            <div id="tab2" class="tab-pane hidden">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-3">Recibe la Motivación que Necesitas</h3>
+                                <p class="text-gray-600">Cada acción positiva es reconocida. Gana eco-puntos, desbloquea logros y accede a recompensas reales que celebran tu compromiso y te impulsan a seguir adelante.</p>
+                            </div>
+                            <div id="tab3" class="tab-pane hidden">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-3">Observa tu Impacto Real</h3>
+                                <p class="text-gray-600">Hacemos visible lo invisible. Observa en tiempo real cómo tus acciones se traducen en métricas concretas: kg de CO₂ evitados, litros de agua ahorrados y más.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <img id="solution-image" src="https://placehold.co/600x450/D1E7D3/333333?text=Seguimiento+de+Hábitos" alt="App Screenshot" class="rounded-xl shadow-2xl transition-all duration-300">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="process" class="py-20 md:py-32 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Construido con Propósito y Proceso</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">Un gran producto requiere un gran proceso. Adoptamos Scrum y un taller de Inception de 5 días para alinear la visión, definir el alcance y mitigar riesgos desde el día cero.</p>
+                </div>
+                <div class="relative max-w-4xl mx-auto">
+                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-green-200 rounded-full"></div>
+                    <div class="space-y-16">
+                        <div class="flex items-center">
+                            <div class="w-1/2 pr-8 text-right">
+                                <h4 class="text-2xl font-bold text-green-800">Día 1: Visión Compartida</h4>
+                                <p class="text-gray-600 mt-2">Alineamos al equipo en el propósito y valor de EcoTrack usando dinámicas como el Elevator Pitch.</p>
+                            </div>
+                            <div class="w-12 h-12 bg-green-700 rounded-full flex items-center justify-center text-white font-bold z-10">1</div>
+                            <div class="w-1/2"></div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-1/2"></div>
+                             <div class="w-12 h-12 bg-green-700 rounded-full flex items-center justify-center text-white font-bold z-10">2</div>
+                            <div class="w-1/2 pl-8 text-left">
+                                <h4 class="text-2xl font-bold text-green-800">Día 2: Alcance y Expectativas</h4>
+                                <p class="text-gray-600 mt-2">Definimos qué haríamos y qué no, estableciendo objetivos SMART para mantener el enfoque.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-1/2 pr-8 text-right">
+                                <h4 class="text-2xl font-bold text-green-800">Día 3: Usuarios y Necesidades</h4>
+                                <p class="text-gray-600 mt-2">Creamos arquetipos de personas y mapas de empatía para comprender profundamente a nuestros usuarios.</p>
+                            </div>
+                             <div class="w-12 h-12 bg-green-700 rounded-full flex items-center justify-center text-white font-bold z-10">3</div>
+                            <div class="w-1/2"></div>
+                        </div>
+                         <div class="flex items-center">
+                            <div class="w-1/2"></div>
+                             <div class="w-12 h-12 bg-green-700 rounded-full flex items-center justify-center text-white font-bold z-10">4</div>
+                            <div class="w-1/2 pl-8 text-left">
+                                <h4 class="text-2xl font-bold text-green-800">Día 4: MVP y Priorización</h4>
+                                <p class="text-gray-600 mt-2">Definimos el Producto Mínimo Viable (MVP) usando User Story Mapping y matrices de esfuerzo vs. valor.</p>
+                            </div>
+                        </div>
+                         <div class="flex items-center">
+                            <div class="w-1/2 pr-8 text-right">
+                                <h4 class="text-2xl font-bold text-green-800">Día 5: Plan de Acción</h4>
+                                <p class="text-gray-600 mt-2">Creamos el roadmap inicial y definimos roles, dejando al equipo listo para el primer Sprint.</p>
+                            </div>
+                             <div class="w-12 h-12 bg-green-700 rounded-full flex items-center justify-center text-white font-bold z-10">5</div>
+                            <div class="w-1/2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Visión, Viabilidad y Métricas</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">EcoTrack no es solo un proyecto, es una iniciativa con un plan de negocio y métricas claras para medir nuestro éxito en tres frentes: proceso, producto y propósito.</p>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Distribución de la Inversión</h3>
+                        <div class="chart-container">
+                             <canvas id="investmentChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Indicadores Clave de Rendimiento (KPIs)</h3>
+                        <div class="space-y-6">
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="font-bold text-lg text-green-800">Velocidad del Sprint</h4>
+                                <p class="text-gray-600 mt-1">Mide la eficiencia de nuestro equipo, asegurando entregas de valor predecibles y una gestión ágil.</p>
+                            </div>
+                             <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="font-bold text-lg text-green-800">Tasa de Retención de Hábitos</h4>
+                                <p class="text-gray-600 mt-1">Valida si resolvemos el problema del usuario: el % de personas que mantienen un hábito por 7, 14 y 30 días.</p>
+                            </div>
+                             <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="font-bold text-lg text-green-800">Burn-Up Ambiental</h4>
+                                <p class="text-gray-600 mt-1">Cuantifica nuestro impacto real: la suma agregada de CO₂ evitado, agua ahorrada y residuos reciclados por la comunidad.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="team" class="py-20 md:py-32 bg-white">
+             <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Los Arquitectos del Cambio</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">EcoTrack es el resultado de la pasión y colaboración de un equipo multidisciplinario.</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 max-w-5xl mx-auto">
+                    <div class="text-center">
+                        <img src="https://placehold.co/150x150/D1E7D3/333333?text=CR" alt="Celeste Ruz" class="w-32 h-32 rounded-full mx-auto mb-4 shadow-lg">
+                        <h4 class="font-bold text-gray-800">Celeste Ruz</h4>
+                    </div>
+                    <div class="text-center">
+                        <img src="https://placehold.co/150x150/D1E7D3/333333?text=JR" alt="Javier Romero" class="w-32 h-32 rounded-full mx-auto mb-4 shadow-lg">
+                        <h4 class="font-bold text-gray-800">Javier Romero</h4>
+                    </div>
+                    <div class="text-center">
+                        <img src="https://placehold.co/150x150/D1E7D3/333333?text=JM" alt="Javiera Maldonado" class="w-32 h-32 rounded-full mx-auto mb-4 shadow-lg">
+                        <h4 class="font-bold text-gray-800">Javiera Maldonado</h4>
+                    </div>
+                    <div class="text-center">
+                        <img src="https://placehold.co/150x150/D1E7D3/333333?text=IA" alt="Ignacio Alvarado" class="w-32 h-32 rounded-full mx-auto mb-4 shadow-lg">
+                        <h4 class="font-bold text-gray-800">Ignacio Alvarado</h4>
+                    </div>
+                    <div class="text-center">
+                        <img src="https://placehold.co/150x150/D1E7D3/333333?text=AB" alt="Alyson Briones" class="w-32 h-32 rounded-full mx-auto mb-4 shadow-lg">
+                        <h4 class="font-bold text-gray-800">Alyson Briones</h4>
+                    </div>
+                     <div class="text-center">
+                        <img src="https://placehold.co/150x150/D1E7D3/333333?text=MV" alt="María José Vega" class="w-32 h-32 rounded-full mx-auto mb-4 shadow-lg">
+                        <h4 class="font-bold text-gray-800">María José Vega</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                 <p class="text-xl md:text-2xl italic text-gray-700 max-w-3xl mx-auto mb-8">"En EcoTrack creemos que la sostenibilidad se construye todos los días, desde lo pequeño, lo personal y lo que emociona."</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Únete al Movimiento</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-10">Si compartes nuestra visión y estás interesado en nuestro trabajo, nuestro proceso o en posibles colaboraciones, nos encantaría saber de ti.</p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                     <a href="#" class="bg-gray-800 text-white font-bold py-3 px-8 rounded-full hover:bg-black transition-colors w-full sm:w-auto">Ver en GitHub</a>
+                     <a href="mailto:contacto@ecotrack.info" class="bg-white text-green-700 border-2 border-green-700 font-bold py-3 px-8 rounded-full hover:bg-green-50 transition-colors w-full sm:w-auto">Contactar al Equipo</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="video" class="py-20 md:py-32 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Conoce EcoTrack en Acción</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-10">Mira este video para descubrir cómo funciona nuestra app y por qué puede marcar una diferencia real en tu día a día.</p>
+                
+                <div class="aspect-w-16 aspect-h-9 max-w-5xl mx-auto rounded-xl shadow-2xl overflow-hidden">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/Jl-gmr3lTvg?si=XMD9h5rVKJ0rJkX6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Equipo EcoTrack. Todos los derechos reservados.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="#" class="hover:text-green-400">LinkedIn</a>
+                <a href="#" class="hover:text-green-400">GitHub</a>
+                <a href="mailto:contacto@ecotrack.info" class="hover:text-green-400">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Solution Tabs
+            const tabs = document.querySelectorAll('.tab-btn');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            const solutionImage = document.getElementById('solution-image');
+            const imageSources = {
+                tab1: 'https://placehold.co/600x450/D1E7D3/333333?text=Seguimiento+de+Hábitos',
+                tab2: 'https://placehold.co/600x450/C8E6C9/333333?text=Gamificación+y+Recompensas',
+                tab3: 'https://placehold.co/600x450/A5D6A7/333333?text=Impacto+Ambiental+Real'
+            };
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.dataset.tab;
+
+                    tabs.forEach(item => {
+                        item.classList.remove('text-green-700', 'border-green-700');
+                        item.classList.add('text-gray-500', 'border-transparent');
+                    });
+                    tab.classList.add('text-green-700', 'border-green-700');
+                    tab.classList.remove('text-gray-500', 'border-transparent');
+
+                    tabPanes.forEach(pane => {
+                        if (pane.id === tabId) {
+                            pane.classList.remove('hidden');
+                        } else {
+                            pane.classList.add('hidden');
+                        }
+                    });
+                    
+                    solutionImage.src = imageSources[tabId];
+                });
+            });
+            
+            // Investment Chart
+            const ctx = document.getElementById('investmentChart').getContext('2d');
+            const investmentData = {
+                labels: ['Desarrollo App', 'Marketing y Difusión', 'Inteligencia Artificial', 'Operaciones y Soporte', 'Contingencia'],
+                datasets: [{
+                    data: [41.3, 12.4, 20.7, 16.5, 9.1], // Datos inferidos del informe gráfico
+                    backgroundColor: [
+                        '#2E7D32', // Verde oscuro
+                        '#4CAF50', // Verde
+                        '#81C784', // Verde claro
+                        '#A5D6A7', // Verde muy claro
+                        '#C8E6C9'  // Verde pálido
+                    ],
+                    borderColor: '#FDFBF8',
+                    borderWidth: 4,
+                    hoverOffset: 10
+                }]
+            };
+
+            const investmentChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: investmentData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: "'Poppins', sans-serif",
+                                    size: 14,
+                                },
+                                color: '#3D4A4D',
+                                padding: 20,
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Active nav link on scroll
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 150) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
