@@ -58,45 +58,69 @@
             margin-right: auto;
             height: auto;
         }
+        #hero {
+            background-image: url('img/hero.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            }
+
+            /* Cuando el ancho sea menor o igual a 768px (mobile/tablet) */
+            @media (max-width: 768px) {
+            #hero {
+                background-image: url('img/heromobile.jpg');
+            }
+            }
+
     </style>
 </head>
 <body class="antialiased">
 
     <header id="header" class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-md transition-all duration-300">
-        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#hero" class="text-2xl font-bold gradient-text">EcoTrack</a>
-            <nav class="hidden md:flex space-x-8">
-                <a href="#challenge" class="nav-link font-semibold text-gray-600">El Reto</a>
-                <a href="#solution" class="nav-link font-semibold text-gray-600">La Solución</a>
-                <a href="#process" class="nav-link font-semibold text-gray-600">El Proceso</a>
-                <a href="#impact" class="nav-link font-semibold text-gray-600">Impacto</a>
-                <a href="#team" class="nav-link font-semibold text-gray-600">Equipo</a>
-            </nav>
-            <a href="#contact" class="hidden md:inline-block bg-green-700 text-white font-bold py-2 px-6 rounded-full hover:bg-green-800 transition-colors">Contacto</a>
-             <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden">
-            <a href="#challenge" class="block py-2 px-6 text-sm text-gray-700 hover:bg-green-50">El Reto</a>
-            <a href="#solution" class="block py-2 px-6 text-sm text-gray-700 hover:bg-green-50">La Solución</a>
-            <a href="#process" class="block py-2 px-6 text-sm text-gray-700 hover:bg-green-50">El Proceso</a>
-            <a href="#impact" class="block py-2 px-6 text-sm text-gray-700 hover:bg-green-50">Impacto</a>
-            <a href="#team" class="block py-2 px-6 text-sm text-gray-700 hover:bg-green-50">Equipo</a>
-            <a href="#contact" class="block py-2 px-6 text-sm text-gray-700 hover:bg-green-50">Contacto</a>
-        </div>
-    </header>
+    <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <a href="#hero" class="text-2xl font-bold gradient-text">EcoTrack</a>
+        <nav class="hidden md:flex space-x-8">
+            <a href="#challenge" class="nav-link font-semibold text-gray-600">El Reto</a>
+            <a href="#solution" class="nav-link font-semibold text-gray-600">La Solución</a>
+            <a href="#process" class="nav-link font-semibold text-gray-600">El Proceso</a>
+            <a href="#impact" class="nav-link font-semibold text-gray-600">Impacto</a>
+            <a href="#team" class="nav-link font-semibold text-gray-600">Equipo</a>
+        </nav>
+        <a href="#contact" class="hidden md:inline-block bg-green-700 text-white font-bold py-2 px-6 rounded-full hover:bg-green-800 transition-colors">Contacto</a>
+        <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none" aria-label="Abrir menú móvil" aria-expanded="false">
+            <!-- Icono hamburguesa -->
+            <svg id="icon-open" class="w-6 h-6 block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+            <!-- Icono cerrar -->
+            <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+        <a href="#challenge" class="block py-2 px-6 text-sm text-gray-700 hover:bg-green-50">El Reto</a>
+        <a href="#solution" class="block py-2 px-6 text-sm text-gray-700 hover:bg-green-50">La Solución</a>
+        <a href="#process" class="block py-2 px-6 text-sm text-gray-700 hover:bg-green-50">El Proceso</a>
+        <a href="#impact" class="block py-2 px-6 text-sm text-gray-700 hover:bg-green-50">Impacto</a>
+        <a href="#team" class="block py-2 px-6 text-sm text-gray-700 hover:bg-green-50">Equipo</a>
+        <a href="#contact" class="block py-2 px-6 text-sm text-gray-700 hover:bg-green-50">Contacto</a>
+    </div>
+</header>
+
 
     <main>
-        <section id="hero" class="min-h-screen flex items-center bg-cover bg-center pt-20" style="background-image: url('https://placehold.co/1920x1080/EEF7EE/3D4A4D?text=')">
-            <div class="container mx-auto px-6 text-center">
-                <div class="w-full max-w-4xl mx-auto bg-white/80 backdrop-blur-sm p-8 md:p-12 rounded-3xl shadow-xl">
-                    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4 text-shadow leading-tight">Donde cada acción cuenta</h1>
-                    <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-8">EcoTrack es una app que convierte acciones cotidianas en datos reales de impacto, ayudándote a construir hábitos sostenibles con propósito.</p>
-                    <a href="#challenge" class="bg-green-700 text-white font-bold py-4 px-10 rounded-full hover:bg-green-800 transition-transform hover:scale-105 text-lg shadow-lg">Descubre el Proyecto</a>
-                </div>
-            </div>
-        </section>
+<section id="hero" class="min-h-[95vh] flex items-center bg-cover bg-center pt-12">
+    <div class="container mx-auto px-6 text-center">
+        <div class="w-full max-w-4xl mx-auto bg-white/80 backdrop-blur-sm p-10 md:p-16 rounded-3xl shadow-xl">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 text-shadow leading-tight">Donde cada acción cuenta</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-8">EcoTrack es una app que convierte acciones cotidianas en datos reales de impacto, ayudándote a construir hábitos sostenibles con propósito.</p>
+            <a href="#challenge" class="bg-green-700 text-white font-bold py-4 px-10 rounded-full hover:bg-green-800 transition-transform hover:scale-105 text-lg shadow-lg">Descubre el Proyecto</a>
+        </div>
+    </div>
+</section>
+
+
 
         <section id="challenge" class="py-20 md:py-32 bg-white">
             <div class="container mx-auto px-6">
@@ -290,22 +314,23 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Únete al Movimiento</h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-10">Si compartes nuestra visión y estás interesado en nuestro trabajo, nuestro proceso o en posibles colaboraciones, nos encantaría saber de ti.</p>
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                     <a href="#" class="bg-gray-800 text-white font-bold py-3 px-8 rounded-full hover:bg-black transition-colors w-full sm:w-auto">Ver en GitHub</a>
+                     <a href="https://github.com/NASH99/EcoTrack" class="bg-gray-800 text-white font-bold py-3 px-8 rounded-full hover:bg-black transition-colors w-full sm:w-auto">Ver en GitHub</a>
                      <a href="mailto:contacto@ecotrack.info" class="bg-white text-green-700 border-2 border-green-700 font-bold py-3 px-8 rounded-full hover:bg-green-50 transition-colors w-full sm:w-auto">Contactar al Equipo</a>
                 </div>
             </div>
         </section>
 
-        <section id="video" class="py-20 md:py-32 bg-white">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Conoce EcoTrack en Acción</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-10">Mira este video para descubrir cómo funciona nuestra app y por qué puede marcar una diferencia real en tu día a día.</p>
-                
-                <div class="aspect-w-16 aspect-h-9 max-w-5xl mx-auto rounded-xl shadow-2xl overflow-hidden">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/Jl-gmr3lTvg?si=XMD9h5rVKJ0rJkX6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-            </div>
-        </section>
+        <section id="video" class="py-20 md:py-32 bg-white min-h-screen flex items-center justify-center">
+    <div class="text-center px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Conoce EcoTrack en Acción</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-10">Mira este video para descubrir cómo funciona nuestra app y por qué puede marcar una diferencia real en tu día a día.</p>
+        
+        <div class="aspect-w-16 aspect-h-9 max-w-5xl mx-auto rounded-xl shadow-2xl overflow-hidden">
+            <iframe width="100%" height="415" src="https://www.youtube.com/embed/Jl-gmr3lTvg?si=XMD9h5rVKJ0rJkX6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+
 
     </main>
 
@@ -313,58 +338,90 @@
         <div class="container mx-auto px-6 text-center">
             <p>&copy; 2025 Equipo EcoTrack. Todos los derechos reservados.</p>
             <div class="flex justify-center space-x-6 mt-4">
-                <a href="#" class="hover:text-green-400">LinkedIn</a>
-                <a href="#" class="hover:text-green-400">GitHub</a>
-                <a href="mailto:contacto@ecotrack.info" class="hover:text-green-400">Email</a>
+                <a href="https://github.com/NASH99/EcoTrack" class="hover:text-green-400">GitHub</a>
             </div>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Mobile Menu
             const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('icon-open');
+        const iconClose = document.getElementById('icon-close');
+
+        mobileMenuButton.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+
+            // Cambiar ícono acorde al estado
+            if (isHidden) {
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+            } else {
+                iconOpen.classList.add('hidden');
+                iconClose.classList.remove('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'true');
+            }
+        });
+
+        // Cerrar menú móvil al hacer click en un enlace
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
             });
+        });
 
-            // Solution Tabs
-            const tabs = document.querySelectorAll('.tab-btn');
-            const tabPanes = document.querySelectorAll('.tab-pane');
-            const solutionImage = document.getElementById('solution-image');
-            const imageSources = {
-                tab1: 'https://placehold.co/600x450/D1E7D3/333333?text=Seguimiento+de+Hábitos',
-                tab2: 'https://placehold.co/600x450/C8E6C9/333333?text=Gamificación+y+Recompensas',
-                tab3: 'https://placehold.co/600x450/A5D6A7/333333?text=Impacto+Ambiental+Real'
-            };
+        // Solution Tabs
+        const tabs = document.querySelectorAll('.tab-btn');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        const solutionImage = document.getElementById('solution-image');
+        const imageSources = {
+            tab1: "img/seguimiento.jpeg",
+            tab2: "img/gamificacion.jpeg",
+            tab3: "img/impacto.jpeg"
+        };
 
+        // Función para activar un tab específico
+        function activateTab(tabId) {
             tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const tabId = tab.dataset.tab;
-
-                    tabs.forEach(item => {
-                        item.classList.remove('text-green-700', 'border-green-700');
-                        item.classList.add('text-gray-500', 'border-transparent');
-                    });
+                if (tab.dataset.tab === tabId) {
                     tab.classList.add('text-green-700', 'border-green-700');
                     tab.classList.remove('text-gray-500', 'border-transparent');
-
-                    tabPanes.forEach(pane => {
-                        if (pane.id === tabId) {
-                            pane.classList.remove('hidden');
-                        } else {
-                            pane.classList.add('hidden');
-                        }
-                    });
-                    
-                    solutionImage.src = imageSources[tabId];
-                });
+                } else {
+                    tab.classList.remove('text-green-700', 'border-green-700');
+                    tab.classList.add('text-gray-500', 'border-transparent');
+                }
             });
-            
-            // Investment Chart
-            const ctx = document.getElementById('investmentChart').getContext('2d');
-            const investmentData = {
+
+            tabPanes.forEach(pane => {
+                if (pane.id === tabId) {
+                    pane.classList.remove('hidden');
+                } else {
+                    pane.classList.add('hidden');
+                }
+            });
+
+            solutionImage.src = imageSources[tabId];
+        }
+
+        // Activar la primera pestaña al cargar la página
+        activateTab('tab1');
+
+        // Evento para cambiar de pestaña
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                activateTab(tabId);
+            });
+        });
+
+        // Investment Chart
+        const ctx = document.getElementById('investmentChart').getContext('2d');
+        const investmentData = {
                 labels: ['Desarrollo App', 'Marketing y Difusión', 'Inteligencia Artificial', 'Operaciones y Soporte', 'Contingencia'],
                 datasets: [{
                     data: [41.3, 12.4, 20.7, 16.5, 9.1], // Datos inferidos del informe gráfico
